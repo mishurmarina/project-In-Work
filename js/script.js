@@ -1,4 +1,4 @@
-import "@babel/polyfill";
+//import "@babel/polyfill";
 
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
         //let timeInterval = setInterval(updateClock, 1000);
-        
+
 
         // function updateClock() {
         //     let t = getTimeRemaining(endtime);
@@ -82,8 +82,7 @@ window.addEventListener('DOMContentLoaded', function () {
         //     }
         // }
         // переписываем setInterval в ES6:
-        let timeInterval = setInterval(() => 
-         {
+        let timeInterval = setInterval(() => {
             let t = getTimeRemaining(endtime);
             if (t.seconds < 10) {
                 t.seconds = '0' + t.seconds;
@@ -100,7 +99,7 @@ window.addEventListener('DOMContentLoaded', function () {
             if (t.total <= 0) {
                 clearInterval(timeInterval);
             }
-        },1000);
+        }, 1000);
 
     }
 
@@ -125,21 +124,21 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 
     // подключаем модальное окно к кнопкам Узнать больше:
-        
-        let descriptionBtns = document.querySelectorAll('.description-btn');
-        //     description = document.querySelectorAll('.description');
-        // console.log(description);
-    
+
+    let descriptionBtns = document.querySelectorAll('.description-btn');
+    //     description = document.querySelectorAll('.description');
+    // console.log(description);
+
     // в стандарте ES5:
     // function showOverlay() {
     //         overlay.style.display = 'block';
     //         document.body.style.overflow = 'hidden';
 
     // }
-    
+
 
     // можно и через цикл:
-    
+
     // for (let i = 0; i < descriptionBtns.length; i++){
     //     descriptionBtns[i].addEventListener('click', function(){
     //         showOverlay();
@@ -153,11 +152,11 @@ window.addEventListener('DOMContentLoaded', function () {
     // });
 
     // переписываем в ES6 делаем функцию showOverlay стрелочной :
-    descriptionBtns.forEach(function(item,i,descriptionBtns){
-        item.addEventListener('click',function(){
-            let showoverlay = () =>{
+    descriptionBtns.forEach(function (item, i, descriptionBtns) {
+        item.addEventListener('click', function () {
+            let showoverlay = () => {
                 overlay.style.display = 'block';
-                document.body.style.overflow = 'hidden';   
+                document.body.style.overflow = 'hidden';
             };
             showoverlay();
         });
@@ -225,11 +224,11 @@ window.addEventListener('DOMContentLoaded', function () {
     //     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     //     let contactFormData = new FormData();
-        
+
     //         contactFormData.append('email',inputContactForm[0].value);
     //         contactFormData.append('tel',inputContactForm[1].value);
-            
-        
+
+
     //     request.send(contactFormData);
 
     //     request.addEventListener('readystatechange', function () {
@@ -249,40 +248,39 @@ window.addEventListener('DOMContentLoaded', function () {
     // });
     //Form Common
     let form = document.getElementsByClassName('main-form')[0],
-    formBottom = document.getElementById('form'),
-    input = document.getElementsByTagName('input'),
-    statusMessage = document.createElement('div');
+        formBottom = document.getElementById('form'),
+        input = document.getElementsByTagName('input'),
+        statusMessage = document.createElement('div');
     statusMessage.classList.add('status');
 
-    function sendForm(elem){
+    function sendForm(elem) {
         elem.addEventListener('submit', function (e) {
             e.preventDefault();
             elem.appendChild(statusMessage);
             let request = new XMLHttpRequest();
             request.open('POST', 'server.php');
-            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');//обычный формат
-    
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //обычный формат
+
             let formData = new FormData(elem);
-    
+
             request.send(formData); // для обычного формата.
-            
-            request.onreadystatechange = function(){
+
+            request.onreadystatechange = function () {
                 if (request.readyState < 4) {
                     statusMessage.innerHTML = message.loading;
-                } else  if (request.readyState === 4 ){
-                    if (request.status == 200 && request.status < 300){
+                } else if (request.readyState === 4) {
+                    if (request.status == 200 && request.status < 300) {
                         //thanksModal.style.display = 'block';
                         //mainModal.style.display = 'none';
                         statusMessage.innerHTML = message.success;
-                    }
-                    else{
+                    } else {
                         statusMessage.innerHTML = message.failure;
                     }
                 }
             };
-            
-    
-            for (let i = 0 ; i < input.length ; i++){
+
+
+            for (let i = 0; i < input.length; i++) {
                 input[i].value = '';
             }
         });
@@ -292,8 +290,98 @@ window.addEventListener('DOMContentLoaded', function () {
 
     sendForm(formBottom);
 
+    //slider:
+    let slideIndex = 1,
+        slides = document.querySelectorAll('.slider-item'),
+        prev = document.querySelector('.prev'),
+        next = document.querySelector('.next'),
+        dotsWrap = document.querySelector('.slider-dots'),
+        dots = document.querySelectorAll('.dot');
 
+    showSlides(slideIndex);
 
+    function showSlides(n) {
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+        slides.forEach((item) => item.style.display = 'none');
+        dots.forEach((item) => item.classList.remove('dot-active'));
+        slides[slideIndex - 1].style.display = 'block';
+        dots[slideIndex - 1].classList.add('dot-active');
+    }
 
+    function plussSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    prev.addEventListener('click', function () {
+        plussSlides(-1);
+    });
+
+    next.addEventListener('click', function () {
+        plussSlides(1);
+    });
+
+    //реализуем точки:
+    dotsWrap.addEventListener('click', function (event) {
+        for (let i = 0; i < dots.length + 1; i++) {
+            if (event.target.classList.contains('dot') &&
+                event.target == dots[i - 1]) {
+                currentSlide(i);
+
+            }
+        }
+    });
+
+    //calc:
+    let persons = document.querySelectorAll('.counter-block-input')[0],
+        restDays = document.querySelectorAll('.counter-block-input')[1],
+        place = document.getElementById('select'),
+        totalValue = document.getElementById('total'),
+        personsSum = 0,
+        daysSum = 0,
+        total = 0;
+    totalValue.innerHTML = 0;
+
+    persons.addEventListener('change', function () {
+
+        personsSum = +this.value;
+        total = (daysSum + personsSum) * 4000;
+        if (restDays.value == '' || persons.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            totalValue.innerHTML = total;
+        }
+    });
+
+    restDays.addEventListener('change', function () {
+
+        daysSum = +this.value;
+        total = (daysSum + personsSum) * 4000;
+        if (restDays.value == '' || persons.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            totalValue.innerHTML = total;
+        }
+    });
+
+    place.addEventListener('change', function () {
+        if (restDays.value == '' || persons.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            let a = total;
+            totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+        }
+
+    });
+
+    
 
 });
