@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', function () {
     });
     // пишем таймер:
 
-    let deadline = '2020-10-21';
+    /*let deadline = '2021-12-21';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date());
@@ -103,7 +103,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    setClock('timer', deadline);
+    setClock('timer', deadline);*/
 
     // модальное окно
     let more = document.querySelector('.more'),
@@ -341,7 +341,7 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 
     //calc:
-    let persons = document.querySelectorAll('.counter-block-input')[0],
+    /*let persons = document.querySelectorAll('.counter-block-input')[0],
         restDays = document.querySelectorAll('.counter-block-input')[1],
         place = document.getElementById('select'),
         totalValue = document.getElementById('total'),
@@ -380,7 +380,7 @@ window.addEventListener('DOMContentLoaded', function () {
             totalValue.innerHTML = a * this.options[this.selectedIndex].value;
         }
 
-    });
+    });*/
 
     
 

@@ -91,16 +91,22 @@ header {
 	}
 }
 
+
+
 .main {
 	height: 650px;
 	width: 100%;
-	background: url(../img/bg.jpg) center no-repeat;
-	background-size: cover;
+	background: url(../img/SamVsNasos.jpg) center no-repeat;
+	background-size: contain;
+	display:inline-block;
+	position:relative;
+
+	
 
 	&-block {
 		width: 750px;
 		min-height: 300px;
-		border: 6px solid @main-color;
+		border: 0px solid @main-color;
 		background-color: rgba(0, 0, 0, .4);
 		margin: 0 auto;
 		padding: 40px;
@@ -132,13 +138,23 @@ header {
 		}
 
 		&-descr {
-			color: @main-color;
+			color: #fff ;
 			text-transform: uppercase;
 			font-size: 22px;
 			margin-top: 35px;
 			font-weight: bold;
 		}
 	}
+	&-descr {
+	display: inline-block;
+	position: absolute;
+	bottom:380px;right: 0px;
+	padding: 5px 5px 5px 10px;
+	color: #210ef0fd;
+	font-size: 26px;
+	font-weight: 600;
+	}
+
 }
 
 .content {
@@ -310,6 +326,9 @@ header {
 		.wrap {
 			width: 100%;
 			position: relative;
+			display: grid;
+   			align-items: center;
+   			justify-content: center; 
 
 			.slider-item {
 				width: 80%;
@@ -318,7 +337,8 @@ header {
 				position: relative;
 
 				img {
-					width: 100%;
+				//width: 100%;
+				//min-height:300px;
 				}
 			}
 
@@ -496,7 +516,7 @@ header {
 	.more {
 		display: block;
 		margin: 0 auto;
-		margin-top: 60px;
+		margin-top: 90px;
 		width: 250px;
 		height: 60px;
 		background-color: transparent;
@@ -518,13 +538,15 @@ header {
 		margin: 0 auto;
 		margin-top: 150px;
 		box-shadow: 0px 0px 30px rgba(0, 0, 0, .8);
+		padding-top: 25px;
 
 		&-img {
 			width: 50%;
 
 			img {
-				height: 550px;
-				transform: translateY(-13%);
+				height: 250px;
+				transform: translateX(-0%);
+				
 			}
 		}
 
