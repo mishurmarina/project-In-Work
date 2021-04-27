@@ -104,7 +104,7 @@ header {
 	
 
 	&-block {
-		width: 750px;
+		max-width: 750px;
 		min-height: 300px;
 		border: 0px solid @main-color;
 		background-color: rgba(0, 0, 0, .4);
@@ -115,7 +115,7 @@ header {
 
 		&-link {
 			color: #fff;
-			font-size: 22px;
+			font-size: 1.8vw;
 			font-weight: bold;
 
 			&:after {
@@ -132,7 +132,7 @@ header {
 		&-title {
 			color: #fff;
 			text-transform: uppercase;
-			font-size: 52px;
+			font-size: 3.4vw;
 			margin-top: 35px;
 
 		}
@@ -140,7 +140,7 @@ header {
 		&-descr {
 			color: #fff ;
 			text-transform: uppercase;
-			font-size: 22px;
+			font-size: 1.8vw;
 			margin-top: 35px;
 			font-weight: bold;
 		}
@@ -159,9 +159,9 @@ header {
 
 .content {
 	width: 100%;
-	min-height: 3200px;
-	background: url(../img/main_bg.jpg);
-	background-position: 50% 30%;
+	min-height: 100%;
+	//background: url(../img/main_bg.jpg);
+	//background-position: 50% 30%;
 
 	.info {
 		width: 100%;
@@ -347,7 +347,7 @@ header {
 				cursor: pointer;
 				top: 0;
 				width: 90px;
-				left: 10%;
+				left: 35%;
 				background-color: rgba(0, 0, 0, .0);
 				transition: 0.3s;
 				height: 100%;
@@ -382,7 +382,7 @@ header {
 				background-color: rgba(0, 0, 0, .0);
 				transition: 0.3s;
 				height: 100%;
-				right: 10%;
+				right: 30%;
 
 				&:hover {
 					background-color: rgba(0, 0, 0, .4);
@@ -541,24 +541,29 @@ header {
 		padding-top: 25px;
 
 		&-img {
-			width: 50%;
+			//width: 50%;
 
 			img {
 				height: 250px;
-				transform: translateX(-0%);
-				
+				transform: translateX(-0%) scale(.5);
+				flex-shrink: 10;
 			}
 		}
+
+	
+
 
 		&-form {
 			width: 50%;
 			padding-left: 40px;
 
+
 			&-title {
 				margin-top: 30px;
 				color: @main-color;
-				font-size: 26px;
+				font-size: 2vw;
 				font-weight: 300;
+				padding-left: 0px;
 
 				&:after {
 					content: '';
@@ -573,13 +578,13 @@ header {
 			form {
 				input {
 					display: block;
-					width: 60%;
+					width: 70%;
 					height: 40px;
 					margin-top: 30px;
 					background-color: transparent;
 					border: none;
 					border-bottom: 1px solid #fff;
-					color: #fff;
+					color: @main-color;
 				}
 
 				button {
@@ -594,6 +599,18 @@ header {
 					&:hover {
 						box-shadow: 0 0 10px @main-color;
 					}
+				}
+			}
+
+		}
+		@media(max-width:655px){
+			
+			flex-direction: column;
+			
+			&-form{
+				width:90%;
+			&-title{
+			font-size: 4vw;	
 				}
 			}
 		}
@@ -648,7 +665,7 @@ header {
 		z-index: 4;
 		left: 50%;
 		top: 150px;
-		width: 752px;
+		width: 70%;
 		transform: translateX(-50%);
 
 		&-close {
@@ -664,13 +681,13 @@ header {
 		&-title {
 			display: block;
 			width: 100%;
-			height: 71px;
-			line-height: 71px;
+			height: 5vw;
+			line-height: 5vw;
 			margin: 0;
 			background-color: @main-color;
 			color: #ffffff;
 			text-transform: uppercase;
-			font-size: 21px;
+			font-size: 3vw;
 			font-weight: 500;
 			text-align: center;
 		}
@@ -678,14 +695,14 @@ header {
 		&-form {
 			background: url(../img/modal.jpg) center no-repeat;
 			background-size: cover;
-			padding: 35px 88px 50px 88px;
+			padding: 4vw 8vw 5vw 8vw;
 			color: #fff;
 
 			&-header {
 				padding: 0;
 				font-weight: 400;
-				line-height: 27px;
-				font-size: 30px;
+				line-height: 2.9vw;
+				font-size: 2.9vw;
 				text-align: center;
 			}
 
@@ -698,8 +715,8 @@ header {
 			}
 
 			&__input {
-				width: 365px;
-				height: 56px;
+				width: 210px;
+				height: 8vh;
 				margin-top: 17px;
 				font-size: 18px;
 				background-color: @main-color;
@@ -742,10 +759,10 @@ header {
 
 			&__btn {
 				width: 180px;
-				height: 56px;
+				height: 8vh;
 				font-size: 15px;
 				line-height: 22px;
-				margin-left: 16px;
+				//margin-left: 16px;
 				background-color: transparent;
 				color: @main-color;
 				border: 1px solid @main-color;

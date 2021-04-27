@@ -256,10 +256,26 @@ window.addEventListener('DOMContentLoaded', function () {
     function sendForm(elem) {
         elem.addEventListener('submit', function (e) {
             e.preventDefault();
+            /*if (!grecaptcha.getResponse()) {
+                alert('Вы не заполнили поле Я не робот!');
+            e.preventDefault();
+                return false; // возвращаем false и предотвращаем отправку формы
+            }*/
+             var v2 =  grecaptcha.getResponse(widgetId2);
+             var v1 =  grecaptcha.getResponse(widgetId1);
+            if ((v1.length !== 0) || (v2.length !== 0)) {
+
+            } else {
+                alert('Вы не заполнили поле Я не робот!');
+                e.preventDefault();
+                return false;
+            }
+
             elem.appendChild(statusMessage);
             let request = new XMLHttpRequest();
             request.open('POST', 'server.php');
-            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //обычный формат
+            //request.open('POST', formBottom.action);
+          //  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //обычный формат
 
             let formData = new FormData(elem);
 
@@ -279,7 +295,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 }
             };
 
-
+            grecaptcha.reset();
             for (let i = 0; i < input.length; i++) {
                 input[i].value = '';
             }

@@ -7,6 +7,52 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700&amp;subset=cyrillic-ext" rel="stylesheet">
 	<link rel="stylesheet" href="css/bootstrap-grid.min.css">
 	<link rel="stylesheet" href="css/style.css">
+	
+	<script type="text/javascript">
+      /* var onloadCallback = function() {
+        mysitekey = '6Leyo4saAAAAADK3Dk6v0PU_OeHS1gmDSVMp4HCn';
+        grecaptcha.render('recaptcha1', {
+        'sitekey' : mysitekey
+        });
+        grecaptcha.render('recaptcha2', {
+        'sitekey' : mysitekey
+        });
+        };*/
+
+        /*var verifyCallback = function(response) {
+        	      };*/
+      var widgetId1;
+      var widgetId2;
+      var onloadCallback = function() {
+        // Renders the HTML element with id 'recaptcha1' as a reCAPTCHA widget.
+        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+        widgetId1 = grecaptcha.render('recaptcha1', {
+          'sitekey' : '6Leyo4saAAAAADK3Dk6v0PU_OeHS1gmDSVMp4HCn',
+          //'theme' : 'light'
+        });
+        widgetId2 = grecaptcha.render(document.getElementById('recaptcha2'), {
+          'sitekey' : '6Leyo4saAAAAADK3Dk6v0PU_OeHS1gmDSVMp4HCn'
+         // 'callback' : verifyCallback
+        });
+        /*grecaptcha.render('example3', {
+          'sitekey' : '6Leyo4saAAAAADK3Dk6v0PU_OeHS1gmDSVMp4HCn',
+          'callback' : verifyCallback,
+          'theme' : 'dark'
+        });*/
+      };
+      /*делаем рекаптчу адаптивной
+      var captchasAr = document.querySelectorAll(".g-recaptcha");
+        captchasAr.forEach(function (grecaptcha) {
+            var reCaptchaWidth = 304;
+            var containerWidth = grecaptcha.parentNode.offsetWidth;
+            if (reCaptchaWidth > containerWidth) {
+                grecaptcha.parentNode.style.transform = 'scale(' + (containerWidth / reCaptchaWidth) + ')';
+                grecaptcha.parentNode.style.transformOrigin = 'left top';
+                grecaptcha.parentNode.style.width = (reCaptchaWidth / containerWidth) * 100 + '%';
+            }
+        });*/
+
+    </script>
 </head>
 <body>
 	<header>
@@ -150,7 +196,7 @@
 				<div class="wrap">
 
 					<div class="slider-item fade">
-						<img src="img/slider_10.png" alt="slider">
+						<img src="img/slider_1.png" alt="slider">
 					</div>
 					<div class="slider-item fade">
 						<img src="img/slider_2.jpg" alt="slider">
@@ -200,7 +246,7 @@
 			<div class="contact" id="contacts">
 				<div class="contact-img">
 					<!--<img src="https://thypix.com/wp-content/uploads/easy-pictures-for-sketching-68.jpg" alt="contacts">-->
-					<pre style='font-size: 26px; color: #fff;margin-top: 30px;font-weight: 300;padding-left: 20px;'>ЧТПУП "Белпищоборудование"	
+					<pre style='font-size: 2vw; color: #fff;margin-top: 30px;font-weight: 300;padding-left: 20px;'>ЧТПУП "Белпищоборудование"	
 					<p>email: mmdetal@mail.ru</p>
 тел:(017)270-68-12, (029)681-30-33
 					</pre>
@@ -208,14 +254,16 @@
 					<img src="img/cow-clip-art-24.png" alt="contacts">
 					
 				</div>
-				<div class="contact-form">
-					<div class="contact-form-title">
+				<div class="contact-form" >
+					<div class="contact-form-title"> 
 						Мы с вами свяжемся
 					</div>
-					<form id="form">
+					<form  id="form"  action="server.php" >
 						<input  name="email" required type="email" placeholder="Ваша почта">
-						<input  name="tel" required type="tel" placeholder="Ваш телефон">
-						<button type="submit">Отправить</button>
+						<input  name="tel"  required type="tel" placeholder="Ваш телефон">
+						<div data-theme="dark" style="transform:scale(0.5); transform-origin:0;" class="g-recaptcha"  id="recaptcha1" ></div>
+						
+						<button type="submit" style=" margin-top: 0px; ">Отправить</button>
 					</form>
 				</div>
 			</div>
@@ -254,21 +302,24 @@
 				<div class="popup-title">
 				Форма обратной связи</div>
 					<div class="popup-form">	
-						<form action="#" class="main-form">
+						<form action="#"  class="main-form">
+						<!--<form action="javascript:grecaptcha.reset(widgetId2);" class="main-form">-->
 							<div class="popup-form-header">
 								Узнайте больше об интересующем Вас оборудовании
 							</div>
 								<label class="popup-form__label" for="phone">
 								Введите ваш номер телефона:
 								</label>
-								<input class="popup-form__input" name="phone" type="tel" required placeholder="+375(29) 681 30 33">
-								<button class="button popup-form__btn">
+								<input class="popup-form__input" name="tel" type="tel" required placeholder="+375(29) 681 30 33">
+								<div data-theme="dark" style="transform:scale(0.5); transform-origin:0;" class="g-recaptcha" id="recaptcha2" ></div>
+								<button  class="button popup-form__btn">
 									Оставить заявку!
 								</button>
 						</form>
 					</div>
 	 		</div>
 	</div>
+	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 	<script src="js/script.js"></script>
 </body>
 </html>
